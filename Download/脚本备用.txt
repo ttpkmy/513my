@@ -1,0 +1,27 @@
+
+<!-- 文章卡片 脚本 -->
+<a href="脚本链接" class="block article-link" target="_blank" rel="noopener noreferrer">
+<article class="bg-white rounded-xl shadow-sm p-6 article-card-hover article-item">
+<div class="mb-4">
+<span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full category">脚本</span></div>
+<h3 class="font-bold text-xl mb-3 article-title">脚本标题</h3>
+<p class="text-gray-600 text-sm line-clamp-1 article-content">介绍</p>
+</article></a>
+
+<!-- 文章卡片 副本 -->
+<a href="副本链接" class="block article-link" target="_blank" rel="noopener noreferrer">
+<article class="bg-white rounded-xl shadow-sm p-6 article-card-hover article-item">
+<div class="mb-4">
+<span class="bg-amber-100 text-amber-800 text-xs font-medium px-2.5 py-0.5 rounded-full category">副本</span></div>
+<h3 class="font-bold text-xl mb-3 article-title">副本标题</h3>
+<p class="text-gray-600 text-sm line-clamp-1 article-content">副本介绍</p>
+</article></a>
+
+<!-- 文章卡片 其他 -->
+<a href="其他链接" class="block article-link" target="_blank" rel="noopener noreferrer">
+<article class="bg-white rounded-xl shadow-sm p-6 article-card-hover article-item">
+<div class="mb-4">
+<span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full category">其他</span></div>
+<h3 class="font-bold text-xl mb-3 article-title">其他标题</h3>
+<p class="text-gray-600 text-sm line-clamp-1 article-content">其他介绍</p>
+</article></a>

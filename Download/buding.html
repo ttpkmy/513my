@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老端补丁专区-魔域版本库-513my.Cοm</title>
+    <style>
+        :root {
+            --primary: #165DFF;
+            --secondary: #36BFFA;
+            --dark: #1D2939;
+            --gray-50: #F9FAFB;
+            --gray-600: #4B5563;
+            --white: #FFFFFF;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --card-gap: 2rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--gray-50);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 4rem 1rem;
+            flex-grow: 1;
+        }
+
+        .main-title {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.25rem;
+            color: #111827;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--card-gap);
+            margin-bottom: 3rem;
+            margin-top: 1rem;
+            justify-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1500px) {
+            .card-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .card-link {
+            display: block;
+            text-decoration: none;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.3s ease;
+            width: 100%;
+            /* 卡片总高度改为自适应（图片300px + 内容高度） */
+            height: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-link:hover .card {
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* 核心修改：图片容器高度改为300px */
+        .card-img-wrapper {
+            position: relative;
+            flex: 0 0 300px; /* 图片高度固定为300px */
+            overflow: hidden;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card-link:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #111827;
+            transition: color 0.3s ease;
+        }
+
+        .card-link:hover .card-title {
+            color: var(--primary);
+        }
+
+        .card-desc {
+            color: var(--gray-600);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        /* 其他补丁列表样式保持不变 */
+        .list-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #111827;
+        }
+
+        .patch-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            min-width: max-content;
+            margin-bottom: 4rem;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--gray-50);
+            border-radius: 0.5rem;
+            gap: 1rem;
+        }
+
+        .list-text {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--dark);
+            white-space: nowrap;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .btn-primary {
+            padding: 0.25rem 0.75rem;
+            background-color: var(--primary);
+            color: var(--white);
+            font-size: 0.875rem;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: rgba(22, 93, 255, 0.9);
+        }
+
+        .btn-secondary {
+            padding: 0.25rem 0.75rem;
+            background-color: var(--secondary);
+            color: var(--white);
+            font-size: 0.875rem;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(54, 191, 250, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        点击就下载，无需注册
+        <h2 class="main-title">老端补丁</h2>
+        <div class="card-grid">
+            <!-- 文章卡片1 -->
+            <a href="https://docs.qq.com/doc/DR0NNbVBTdmdNRk9t" target="_blank" class="card-link">
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        <img src="img/buding.png" alt="补丁图片" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">老端修复补丁完整版(2025-9-30更新)</h3>
+                        <p class="card-desc">修复:黑屏.白屏.花屏.看不见人物.传送地图卡死.去广告</p>
+                    </div>
+                </article>
+            </a>
+            <!-- 文章卡片2 -->
+            <a href="https://docs.qq.com/doc/DR2ZRcUpxVXZDV09P" target="_blank" class="card-link">
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        <img src="img/sgt.png" alt="补丁图片" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">雷鸣门口水果摊补丁</h3>
+                        <p class="card-desc">喜欢就下载，不喜欢就不用下载。</p>
+                    </div>
+                </article>
+            </a>
+            <!-- 文章卡片3 -->
+            <a href="https://docs.qq.com/doc/DR0NBRkhaaFZuam93" target="_blank" class="card-link">
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        <img src="img/kuanping.jpg" alt="补丁图片" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">老端宽屏补丁,大屏补丁</h3>
+                        <p class="card-desc">有两种，一种有广告，一种无广告</p>
+                    </div>
+                </article>
+            </a>
+            <!-- 文章卡片4 -->
+            <a href="https://share.feijipan.com/s/4APWykcO" target="_blank" class="card-link">
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        <img src="img/flash.png" alt="补丁图片" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">老端修复解决flash问题</h3>
+                        <p class="card-desc">提示AdobeFlash Player错误</p>
+                    </div>
+                </article>
+            </a>
+            <!-- 文章卡片5 -->
+            <a href="https://docs.qq.com/doc/DR3d5RUFobFNVaFhD" target="_blank" class="card-link">
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        <img src="img/xuetiao.png" alt="补丁图片" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">修复电脑不显示血条补丁</h3>
+                        <p class="card-desc">有的新电脑可能出现不显示血条的情况</p>
+                    </div>
+                </article>
+            </a>
+            <!-- 文章卡片6 -->
+            <a href="img/lunzi.png" target="_blank" class="card-link">
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        <img src="img/lunzi.png" alt="补丁图片" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">异能者轮子武器</h3>
+                        <p class="card-desc">怀旧轮子 转啊转</p>
+                    </div>
+                </article>
+            </a>
+        </div>
+
+        <div>
+            <h3 class="list-title">其他补丁列表</h3>
+            <div class="patch-list">
+                <div class="list-item">
+                    <span class="list-text">139引擎专用DLL+修复补丁完整版</span>
+                    <div class="btn-group">
+                        <a href="https://share.feijipan.com/s/dSPWvZkt" target="_blank" class="btn-primary">下载地址①</a>
+                        <a href="https://www.123865.com/s/PlU0Vv-5TXWv" target="_blank" class="btn-secondary">下载地址②</a>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <span class="list-text">老端boss地图补丁</span>
+                    <div class="btn-group">
+                        <a href="https://share.feijipan.com/s/W7M2Q8n8" target="_blank" class="btn-primary">下载地址①</a>
+                        <a href="https://www.123865.com/s/PlU0Vv-smPWv" target="_blank" class="btn-secondary">下载地址②</a>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <span class="list-text">老端选区界面[动态背景]补丁</span>
+                    <div class="btn-group">
+                        <a href="https://docs.qq.com/doc/DR2h5eW1abVpGdFFP" target="_blank" class="btn-primary">下载地址①</a>
+                        <a href="https://docs.qq.com/doc/DR2h5eW1abVpGdFFP" target="_blank" class="btn-secondary">下载地址②</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

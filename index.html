@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>513my.Cοм-专业魔域版本库-gm工具-魔域补丁-魔域制作教程-免费魔域版本</title>
+    <meta name="keywords" content="单机魔域下载,魔域版本库,魔域版本,单机魔域工具,魔域一条龙" />
+    <meta name="description" content="魔域单机版,专注魔域版本制作,单机魔域,众多魔域版本任您下载,这里有最新最全的魔域版本,可定制版本" />
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        /* 基础链接样式 - 无下划线 */
+        a {
+            text-decoration: none;
+        }
+        
+        /* 日间/夜间模式基础样式 */
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        body.dark-mode {
+            background-color: #1a1a2e;
+            color: #eaeaea;
+        }
+        
+        /* 欢迎语样式：无框、靠左、紧贴横幅 */
+        .welcome-message {
+            width: 92%;
+            max-width: 1400px;
+            margin: 8px auto 5px;
+            padding: 0;
+            font-size: 16px;
+            color: #2c3e50;
+            text-align: left;
+        }
+        
+        body.dark-mode .welcome-message {
+            color: #f0f0f5;
+        }
+        
+        /* 顶部整合区域 */
+        .top-header {
+            background-color: #2c3e50;
+            padding: 5px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .top-container {
+            width: 92%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .top-tip {
+            color: #e74c3c;
+            font-size: 13px;
+            white-space: nowrap;
+            margin-right: 5px;
+        }
+        
+        body.dark-mode .top-tip {
+            color: #f08c00;
+        }
+        
+        .top-nav {
+            display: flex;
+            gap: 15px;
+            margin-right: auto;
+        }
+        
+        .top-nav a {
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+            font-size: 14px;
+        }
+        
+        .top-nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .right-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+        }
+        
+        .search-wrapper {
+            position: relative;
+        }
+        
+        .search-icon {
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 4px;
+            background-color: #3498db;
+        }
+        
+        .search-container {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            margin-top: 3px;
+            width: 300px;
+            display: none;
+            z-index: 10;
+        }
+        
+        .search-container.active {
+            display: block;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .mode-toggle {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+        
+        .mode-toggle:hover {
+            background-color: #2980b9;
+        }
+        
+        body.dark-mode .mode-toggle {
+            background-color: #4a6fa5;
+        }
+        
+        body.dark-mode .mode-toggle:hover {
+            background-color: #3a5a8c;
+        }
+        
+        /* 横幅区域 */
+        .banner-wrapper {
+            width: 92%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .banner {
+            width: 100%;
+        }
+        
+        .banner-img-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .banner-img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+        
+        .banner-img:hover {
+            transform: scale(1.02);
+        }
+        
+        /* 主要内容区 */
+        .container {
+            width: 92%;
+            max-width: 1400px;
+            margin: 10px auto 30px;
+        }
+        
+        .main-content {
+            width: 100%;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 25px 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        body.dark-mode .section {
+            background: #252a41;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            padding: 15px 25px 25px;
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        body.dark-mode .section-title {
+            color: #e94560;
+            border-bottom-color: #e94560;
+        }
+        
+        /* 新闻卡片 */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 25px;
+        }
+        
+        .news-card {
+            border: 1px solid #eee;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        body.dark-mode .news-card {
+            border-color: #3a405c;
+        }
+        
+        body.dark-mode .news-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .news-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .news-content {
+            padding: 15px;
+        }
+        
+        .news-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        body.dark-mode .news-title {
+            color: #f0f0f5;
+        }
+        
+        /* 新闻描述显示4行文本 */
+        .news-desc {
+            color: #666;
+            font-size: 14px;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.7;
+            height: auto;
+        }
+        
+        body.dark-mode .news-desc {
+            color: #bbb;
+        }
+        
+        /* 资源分享区（文字为紫色） */
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .service-item {
+            flex: 1;
+            min-width: 200px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: background 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .service-item:hover {
+            background: #f1f5f9;
+            transform: translateY(-3px);
+        }
+        
+        body.dark-mode .service-item {
+            background: #3a405c;
+            border-color: #4a506c;
+        }
+        
+        body.dark-mode .service-item:hover {
+            background: #4a506c;
+        }
+        
+        .service-icon {
+            font-size: 32px;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        
+        body.dark-mode .service-icon {
+            color: #e94560;
+        }
+        
+        /* 资源分享区卡片文字颜色为紫色 */
+        .service-item h3 {
+            color: #8a2be2; /* 日间模式紫色 */
+            margin-bottom: 8px;
+        }
+        
+        .service-item p {
+            color: #9370db; /* 日间模式浅紫色 */
+        }
+        
+        /* 夜间模式下的紫色适配 */
+        body.dark-mode .service-item h3 {
+            color: #c8a2c8; /* 夜间模式紫色 */
+        }
+        
+        body.dark-mode .service-item p {
+            color: #d8bfd8; /* 夜间模式浅紫色 */
+        }
+        
+        /* 魔法飞鸽 */
+        .sidebar-links {
+            list-style: none;
+        }
+        
+        .sidebar-links li {
+            margin-bottom: 12px;
+        }
+        
+        .sidebar-links a {
+            color: #3498db;
+            transition: color 0.3s;
+        }
+        
+        body.dark-mode .sidebar-links a {
+            color: #4cc9f0;
+        }
+        
+        .sidebar-links a:hover {
+            color: #2980b9;
+        }
+        
+        body.dark-mode .sidebar-links a:hover {
+            color: #4895ef;
+        }
+        
+        /* 页脚样式 */
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        
+        body.dark-mode .footer {
+            background-color: #16213e;
+        }
+        
+        .copyright {
+            text-align: center;
+            font-size: 14px;
+            color: #aaa;
+            line-height: 1.8;
+        }
+        
+        body.dark-mode .copyright {
+            color: #bbb;
+        }
+        
+        /* 隐藏但对搜索引擎可见的H1标签 */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .news-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .top-container {
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .top-header {
+                padding: 8px 0;
+            }
+            
+            .welcome-message {
+                font-size: 14px;
+                margin: 6px auto 3px;
+            }
+            
+            .top-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .top-tip {
+                margin-bottom: 8px;
+                width: 100%;
+            }
+            
+            .top-nav {
+                width: 100%;
+                margin-bottom: 8px;
+                justify-content: flex-start;
+                margin-right: 0;
+            }
+            
+            .right-controls {
+                width: 100%;
+                justify-content: flex-end;
+                margin-left: 0;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-container {
+                width: 100%;
+                right: 0;
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="sr-only">新品魔域版本库 - 综合资源平台</h1>
+    
+    <!-- 顶部整合区域 -->
+    <div class="top-header">
+        <div class="top-container">
+            <div class="top-tip">如果网站卡，请尝试下面的备用线路</div>
+            <div class="top-nav">
+                <a href="https://cf.513my.com/">备用线路1</a>
+                <a href="https://my.513my.com/">备用线路2</a>
+            </div>
+            <div class="right-controls">
+                <div class="search-wrapper">
+                    <span class="search-icon" id="searchToggle">🔍</span>
+                    <div class="search-container" id="searchContainer">
+                        <input type="text" class="search-box" placeholder="输入关键词搜索...">
+                    </div>
+                </div>
+                <button class="mode-toggle" id="modeToggle">
+                    <span id="modeIcon">🌙</span> 夜间模式
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 欢迎语 -->
+    <div class="welcome-message">
+        欢迎来到新品魔域版本库,这里有最新最全的单机魔域版本，完全免费下载!
+    </div>
+    
+    <!-- 横幅区域 -->
+    <div class="banner-wrapper">
+        <div class="banner">
+            <div class="banner-img-container">
+                <!-- 第一个横幅：宣传图链接 -->
+                <a href="https://curl.qcloud.com/SV5BR2TW" target="_blank">
+                    <img src="ad/txy.png" alt="宣传图" class="banner-img">
+                </a>
+                <!-- 第二个横幅：推广图链接（本地推广页面） -->
+                <a href="ad/ytl.html" target="_blank">
+                    <img src="ad/ytl.gif" alt="推广图" class="banner-img">
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 主要内容区 -->
+    <div class="container">
+        <div class="main-content">
+            <section class="section">
+                <h2 class="section-title">新老端综合区</h2>
+                <div class="news-grid">
+                    <!-- 06/08老端专区 -->
+                    <a href="ldmy.html" class="news-card">
+                        <img class="news-img" data-topic="city" alt="06/08老端专区相关图片">
+                        <div class="news-content">
+                            <h3 class="news-title">06/08老端专区</h3>
+                            <p class="news-desc">
+                                怀旧魔域<br>
+                                以怀旧界面深受老玩家青睐<br>
+                                带你穿越回到2007年那个通宵之夜<br>
+                                游戏版本、引擎、工具、补丁、教程、脚本、插件等，完全免费
+                            </p>
+                        </div>
+                    </a>
+                    
+                    <!-- 1643新端专区 -->
+                    <a href="newindex.html" class="news-card">
+                        <img class="news-img" data-topic="service" alt="1643新端专区相关图片">
+                        <div class="news-content">
+                            <h3 class="news-title">1643新端专区</h3>
+                            <p class="news-desc">
+                                神火新端<br>
+                                全新的界面，焕然一新<br>
+                                在老端的基础上增加了神火、女神等<br>
+                                游戏版本、引擎、工具、补丁、教程，完全免费
+                            </p>
+                        </div>
+                    </a>
+                    
+                    <!-- 1655新端专区 -->
+                    <a href="newindex.html" class="news-card">
+                        <img class="news-img" data-topic="education" alt="1655新端专区相关图片">
+                        <div class="news-content">
+                            <h3 class="news-title">1655新端专区</h3>
+                            <p class="news-desc">
+                                本体新端<br>
+                                拥有互通双端玩法<br>
+                                1-9大职业任意玩，超多副本任你刷<br>
+                                游戏版本、引擎、工具、补丁、教程，完全免费
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            
+            <!-- 资源分享区 -->
+            <section class="section">
+                <h2 class="section-title">资源分享区</h2>
+                <div class="services">
+                    <a href="Download/jiaocheng.html" class="service-item" target="_blank">
+                        <div class="service-icon">📚</div>
+                        <h3>新手教程</h3>
+                        <p>新手入门指南，快速上手</p>
+                    </a>
+                    <a href="Download/tool.html" class="service-item" target="_blank">
+                        <div class="service-icon">🔧</div>
+                        <h3>软件工具</h3>
+                        <p>实用工具集合，高效便捷</p>
+                    </a>
+                    <a href="Download/jiaoben.html" class="service-item" target="_blank">
+                        <div class="service-icon">📜</div>
+                        <h3>脚本数据</h3>
+                        <p>各类脚本及数据下载</p>
+                    </a>
+                    <a href="Download/buding.html" class="service-item" target="_blank">
+                        <div class="service-icon">🧩</div>
+                        <h3>补丁文件</h3>
+                        <p>最新补丁，安全可靠</p>
+                    </a>
+                </div>
+            </section>
+            
+            <!-- 魔法飞鸽 -->
+            <section class="section">
+                <h2 class="section-title">魔法飞鸽</h2>
+                <ul class="sidebar-links">
+                    <li><a href="https://docs.qq.com/doc/DR3NSTVpCWXdCcFpw" target="_blank">08老端单机搭建详细视频教程</a></li>
+                    <li><a href="https://tieba.baidu.com/p/9564218893" target="_blank">1643新端搭建教程</a></li>
+                    <li><a href="https://v.kuaishou.com/JWlA8yuP" target="_blank">1655一键端搭建教程</a></li>
+                    <li><a href="https://tieba.baidu.com/p/9519106385" target="_blank">老端打血条补丁教程</a></li>
+                    <li><a href="https://v.kuaishou.com/KKWZXN3Y" target="_blank">把修复补丁打包到游戏补丁里教程</a></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="copyright">
+            © 2015-2025新品魔域版本库[aaua.cn]<br>
+            抵制不良游戏，拒绝盗版游戏。 注意自我保护，谨防受骗上当。适度游戏益脑，沉迷游戏伤身。 合理安排时间，享受健康生活。
+        </div>
+    </footer>
+
+    <script>
+        // 搜索框折叠/展开功能
+        const searchToggle = document.getElementById('searchToggle');
+        const searchContainer = document.getElementById('searchContainer');
+        
+        searchToggle.addEventListener('click', () => {
+            searchContainer.classList.toggle('active');
+            if (searchContainer.classList.contains('active')) {
+                searchContainer.querySelector('.search-box').focus();
+            }
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!searchToggle.contains(e.target) && !searchContainer.contains(e.target)) {
+                searchContainer.classList.remove('active');
+            }
+        });
+        
+        // 日夜模式切换功能
+        const modeToggle = document.getElementById('modeToggle');
+        const modeIcon = document.getElementById('modeIcon');
+        const body = document.body;
+        
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            modeIcon.textContent = '☀️';
+            modeToggle.textContent = ' 日间模式';
+            modeToggle.prepend(modeIcon);
+        }
+        
+        modeToggle.addEventListener('click', () => {
+            const isDark = body.classList.toggle('dark-mode');
+            
+            if (isDark) {
+                modeIcon.textContent = '☀️';
+                modeToggle.textContent = ' 日间模式';
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                modeIcon.textContent = '🌙';
+                modeToggle.textContent = ' 夜间模式';
+                localStorage.setItem('darkMode', 'false');
+            }
+            
+            modeToggle.prepend(modeIcon);
+        });
+
+        // 每组卡片独立随机3张图片
+        document.addEventListener('DOMContentLoaded', () => {
+            const topicImages = {
+                city: [
+                    'assets/laoduan1.png',
+                    'assets/laoduan2.png',
+                    'assets/laoduan3.png'
+                ],
+                service: [
+                    'assets/xunduan1.png',
+                    'assets/xunduan2.png',
+                    'assets/xunduan3.png'
+                ],
+                education: [
+                    'assets/bt1.png',
+                    'assets/bt2.png',
+                    'assets/bt3.png'
+                ]
+            };
+            
+            const newsImages = document.querySelectorAll('.news-img');
+            newsImages.forEach(img => {
+                const topic = img.dataset.topic;
+                const randomIndex = Math.floor(Math.random() * topicImages[topic].length);
+                img.src = topicImages[topic][randomIndex];
+            });
+        });
+    </script>
+</body>
+</html>
